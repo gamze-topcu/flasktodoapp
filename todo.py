@@ -19,9 +19,6 @@ class Todo(db.Model):
 
 db.create_all()
 
-
-
-
 @app.route("/")
 def index():
     todos = Todo.query.all() #todolar sözlük olarak içinde tutulur.
@@ -46,16 +43,6 @@ def add():
     db.session.add(new_todo)
     db.session.commit()
     return redirect(url_for("index"))
-'''''''''@app.route("/add", methods = ["POST","GET"])
-def addTodo():
-    if request.method == "POST":
-        title = request.form.get("title")
-        newTodo = Todo(title=title, complete=False)
-        db.session.add(newTodo)
-        db.session.commit()
-        return redirect(url_for("index"))
-    else:
-        return redirect(url_for("index"))'''''
 
 
 if __name__ == "__main__":
